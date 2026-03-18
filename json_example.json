@@ -1,0 +1,12 @@
+{
+  "name": "Lena",
+  "age": 33,
+  "is_student": false,
+  "courses": ["Python", "QA automation", "API testing",{
+    "course_name": "NewCourse"
+  }],
+  "address": {
+    "city": "Voronezh",
+    "zip": "369016"
+  }
+}
