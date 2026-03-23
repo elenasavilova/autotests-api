@@ -23,6 +23,6 @@ class PublicUsersClient(APIClient):
         :param request: словарь, содержащий email, password, lastName, firstName, middleName
         :return: ответ от сервера - объект httpx.Response
         """
-        return self.post("http://localhost:8000/api/v1/users", json=request)
+        return self.post("/api/v1/users", json=request)
 
 
