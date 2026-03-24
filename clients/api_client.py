@@ -44,7 +44,7 @@ class APIClient:
             data: RequestData | None = None,
             files: RequestFiles | None = None
     ) -> Response:
-        return self.client.post(URL, json=json, data=data, files=files)
+        return self.client.post(url, json=json, data=data, files=files)
 
 
     """

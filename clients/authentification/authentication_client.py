@@ -4,13 +4,20 @@ from typing import TypedDict
 
 from clients.public_http_builder import get_public_http_client
 
+class Token(TypedDict):
+    tokenType: str
+    accessToken: str
+    refreshToken: str
 
 class LoginRequestDict(TypedDict):
     """
     Описание структуры запроса на аутентификацию.
     """
-    username: str
+    email: str
     password: str
+
+class LoginResponseDict(TypedDict):
+    token: Token
 
 class RefreshRequestDict(TypedDict):
     """
@@ -40,7 +47,12 @@ class AuthenticationClient(APIClient):
         """
         return self.post("api/v1/authentication/refresh", json=request)
 
-    def login(self, request: LoginRequestDict):
+    def login(self, request: LoginRequestDict) -> LoginResponseDict:
+        """
+        Метод возвращает токен
+        :param request: словарь с email, password
+        :return: ответ от сервера в виде LoginResponseDict (token: Token)
+        """
         response = self.login_api(request)
         return response.json()
 
