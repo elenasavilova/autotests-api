@@ -1,5 +1,3 @@
-from dataclasses import Field
-
 from pydantic import BaseModel, Field, ConfigDict, computed_field, HttpUrl, EmailStr, ValidationError
 from pydantic.alias_generators import to_camel
 import uuid
