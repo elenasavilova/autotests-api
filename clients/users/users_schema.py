@@ -17,6 +17,7 @@ class GetUserResponseSchema(BaseModel):
     """
     Описание структуры ответа получения пользователя
     """
+    model_config = ConfigDict(populate_by_name=True)
     user: UserSchema
 
 
@@ -36,6 +37,7 @@ class CreateUserResponseSchema(BaseModel):
     """
     Описание структуры ответа создания пользователя
     """
+    model_config = ConfigDict(populate_by_name=True)
     user: UserSchema
 
 
@@ -54,4 +56,5 @@ class UpdateUserResponseSchema(BaseModel):
     """
     Описание структуры ответа обновления пользователя
     """
+    model_config = ConfigDict(populate_by_name=True)
     user: UserSchema

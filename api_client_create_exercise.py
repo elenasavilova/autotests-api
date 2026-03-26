@@ -1,13 +1,14 @@
 # Вариант с PydanticModel
-from api_client_get_user import public_users_client
-from clients.courses.courses_client import get_courses_client, CreateCourseRequestDict
-from clients.exercises.exercises_client import get_exercises_client, CreateExerciseRequestDict
-from clients.files.files_client import get_files_client, CreateFileRequestDict
+from clients.courses.courses_client import get_courses_client
+from clients.exercises.exercises_client import get_exercises_client
+from clients.files.files_client import get_files_client
 from clients.private_http_builder import AuthenticationUserSchema
 from clients.users.public_users_client import get_public_users_client
 from clients.users.users_schema import CreateUserRequestSchema
 from tools.fakers import get_random_email
-
+from clients.files.files_schema import CreateFileRequestSchema
+from clients.courses.courses_schema import CreateCourseRequestSchema
+from clients.exercises.exercises_schema import CreateExerciseRequestSchema
 
 # Инициализируем клиент PublicUsersClient
 public_users_client = get_public_users_client()
@@ -35,7 +36,7 @@ courses_client = get_courses_client(authentication_user)
 exercise_client = get_exercises_client(authentication_user)
 
 # Загружаем файл
-create_file_request = CreateFileRequestDict(
+create_file_request = CreateFileRequestSchema(
     filename="image.png",
     directory='courses',
     upload_file='./testdata/files/image.png'
@@ -44,27 +45,27 @@ create_file_response = files_client.create_file(create_file_request)
 print('Create file data:', create_file_response)
 
 # Создаем курс
-create_course_request = CreateCourseRequestDict(
+create_course_request = CreateCourseRequestSchema(
     title="Python",
-    maxScore=100,
-    minScore=10,
+    max_score=100,
+    min_score=10,
     description="Python API course",
-    estimatedTime="2 weeks",
-    previewFileId=create_file_response['file']['id'],
-    createdByUserId=create_user_response.user.id
+    estimated_time="2 weeks",
+    preview_file_id=create_file_response.file.id,
+    created_by_user_id=create_user_response.user.id
 )
 create_course_response = courses_client.create_course(create_course_request)
 print('Create course data:', create_course_response)
 
 # Создаем упражнение
-create_exercise_request = CreateExerciseRequestDict(
+create_exercise_request = CreateExerciseRequestSchema(
     title= "Create a function",
-    courseId= create_course_response['course']['id'],
-    maxScore= 10,
-    minScore= 1,
-    orderIndex= 2,
+    course_id= create_course_response.course.id,
+    max_score= 10,
+    min_score= 1,
+    order_index= 2,
     description= "Basic level",
-    estimatedTime= "15 minutes"
+    estimated_time= "15 minutes"
 )
 create_exercise_response = exercise_client.create_exercise(create_exercise_request)
 print('Create exercise data:', create_exercise_response)
