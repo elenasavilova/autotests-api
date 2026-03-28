@@ -1,12 +1,20 @@
+//{
+//  "name": "Lena",
+//  "age": 33,
+//  "is_student": false,
+//  "courses": ["Python", "QA automation", "API testing",{
+//    "course_name": "NewCourse"
+//  }],
+//  "address": {
+//    "city": "Voronezh",
+//    "zip": "369016"
+//  }
+//}
+
 {
-  "name": "Lena",
-  "age": 33,
-  "is_student": false,
-  "courses": ["Python", "QA automation", "API testing",{
-    "course_name": "NewCourse"
-  }],
-  "address": {
-    "city": "Voronezh",
-    "zip": "369016"
-  }
+  "type": "object",
+  "properties": {
+    "username": {"type": "string", "minLength": 5, "maxLength": 15}
+  },
+  "required": ["username"]
 }

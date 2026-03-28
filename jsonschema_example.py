@@ -17,3 +17,16 @@ data = {
 }
 
 validate(instance=data, schema=schema)
+
+
+{
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 15
+    }
+  },
+  "required": ["username"]
+}
