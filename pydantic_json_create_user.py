@@ -2,6 +2,7 @@ from clients.private_http_builder import AuthenticationUserSchema
 from clients.users.private_users_client import get_private_users_client
 from clients.users.public_users_client import get_public_users_client
 from clients.users.users_schema import CreateUserRequestSchema, CreateUserResponseSchema
+from tools.assertions.schema import validate_json_schema
 from tools.fakers import get_random_email
 import jsonschema
 
@@ -23,7 +24,7 @@ create_user_response_schema = CreateUserResponseSchema.model_json_schema()
 jsonschema.validate(create_user_response.json(), schema=create_user_response_schema)
 print('Create user data:', create_user_response)
 
-
+validate_json_schema(instance=create_user_response.json(), schema=create_user_response_schema)
 
 
 # Пример
