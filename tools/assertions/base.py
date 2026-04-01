@@ -28,3 +28,15 @@ def assert_equal(actual: Any, expected: Any, name: str):
         f'Actual value: {actual}'
     )
 
+def assert_is_true(actual: Any, name: str):
+    """
+    Проверяет, является ли фактическое значение истинным
+    :param actual: Фактическое значение
+    :param name: Название проверяемого значения
+    :raises AssertionError: Если фактическое значение ложно.
+    """
+    assert actual, (
+        f'Incorrect value: {name}.'
+        f'Expected true value but got: {actual}.'
+    )
+
